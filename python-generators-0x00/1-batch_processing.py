@@ -15,7 +15,11 @@ def stream_users_in_batches(batch_size):
     connection.close()
 
 def batch_processing(batch_size):
-    for batch in stream_users_in_batches(batch_size):
-        for user in batch:
-            if user['age'] > 25:
-                print(user)
+    def generator():
+        for batch in stream_users_in_batches(batch_size):
+            for user in batch:
+                if user['age'] > 25:
+                    yield user
+
+    for user in generator():
+        print(user)
