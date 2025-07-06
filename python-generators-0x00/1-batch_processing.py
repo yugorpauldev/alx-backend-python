@@ -21,5 +21,4 @@ def batch_processing(batch_size):
                 if user['age'] > 25:
                     yield user
 
-    for user in generator():
-        print(user)
+    return generator()
